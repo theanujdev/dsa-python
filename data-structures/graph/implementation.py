@@ -20,13 +20,15 @@ class Graph():
 
 #     2 ---- 0
 #   /   \
-#  1     3
+#  1 --- 3
 
 # Edge List
 # graph = [[0, 2], [2, 3], [2, 1], [1, 3]]
 
 # Adjacent List
 # graph = [[2], [2, 3], [0, 1, 3], [1, 2]]
+# or
+# graph = {0:[2], 1:[2, 3], 2:[0, 1, 3], 3:[1, 2]}
 
 # Adjacent Matrix (with weight)
 # graph = {

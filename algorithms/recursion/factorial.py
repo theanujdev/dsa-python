@@ -1,6 +1,3 @@
-from math import factorial
-
-
 def iterative_factorial(number):
     factorial = 1
     for i in range(2, number+1):

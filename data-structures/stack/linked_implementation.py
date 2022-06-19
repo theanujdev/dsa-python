@@ -26,7 +26,6 @@ class Stack():
     def pop(self):
         if self.length == 1:
             self.bottom = None
-
         if self.length == 0:
             print("Empty stack!")
             return
