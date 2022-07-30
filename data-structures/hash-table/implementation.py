@@ -1,6 +1,3 @@
-from hashlib import new
-
-
 class hash_table():
     def __init__(self, size):
         self.size = size
