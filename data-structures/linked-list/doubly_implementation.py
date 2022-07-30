@@ -1,6 +1,7 @@
 class Node():
     def __init__(self, data) -> None:
         self.data = data
+        self.prev = None
         self.next = None
 
 
@@ -64,6 +65,7 @@ class LinkedList():
     def delete(self, index):
         if index == 0:
             self.head = self.head['next']
+            self.head['prev'] = None
             self.length -= 1
             return
         elif index >= self.length:
