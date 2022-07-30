@@ -76,6 +76,7 @@ class LinkedList():
         for _ in range(index-1):
             current_node = current_node['next']
         current_node['next'] = current_node['next']['next']
+        current_node['next']['prev'] = current_node
         self.length -= 1
 
     def printList(self):
@@ -94,7 +95,7 @@ myLS.append(25)
 myLS.prepend(11)
 myLS.insert(3, 55)
 myLS.printList()
-# myLS.delete(3)
-# myLS.printList()
+myLS.delete(3)
+myLS.printList()
 # print(myLS)
 # print(myLS.head['next'])
