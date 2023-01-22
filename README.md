@@ -11,7 +11,7 @@
 
 # DSA Python
 
-A beginner-friendly introduction to common data structures (array, linked lists, stacks, queues, trees, graphs) and algorithms (search, sorting, recursion, dynamic programming) in Python.
+This repository contains solutions of important DSA questions in Python.
 
 ## Feedback
 
