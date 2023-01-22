@@ -1,9 +1,6 @@
 <div align="center">
     <br />
     <a href="#">
-        <img alt="License" src="https://img.shields.io/apm/l/atomic-design-ui.svg" />
-    </a>
-    <a href="#">
         <img alt="Python 3.7" src="https://img.shields.io/badge/python-v3.7-blue" />
     </a>
     <br />  
@@ -11,7 +8,7 @@
 
 # DSA Python
 
-This repository contains solutions of important DSA questions in Python.
+A beginner-friendly introduction to common data structures (array, linked lists, stacks, queues, trees, graphs) and algorithms (search, sorting, recursion, dynamic programming) in Python.
 
 ## Feedback
 
