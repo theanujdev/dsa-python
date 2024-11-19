@@ -38,7 +38,7 @@ class LinkedList():
         if index == 0:
             self.prepend(data)
             return
-        elif index > self.length:
+        elif index >= self.length:
             self.append(data)
             return
 
