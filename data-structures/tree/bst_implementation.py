@@ -47,73 +47,68 @@ class BST():
         return False
 
     def remove(self, data):
-        if self.root == None:  # Tree is empty
-            return "Tree Is Empty"
+        if self.root is None:  # Tree is empty
+            return "Tree is empty"
+    
         current_node = self.root
         parent_node = None
-        while current_node != None:  # Traversing the tree to reach the desired node or the end of the tree
-            if current_node.data > data:
+
+        while current_node is not None:  # Traverse the tree
+            if current_node.data > data:  # Go left
                 parent_node = current_node
                 current_node = current_node.left
-            elif current_node.data < data:
+            elif current_node.data < data:  # Go right
                 parent_node = current_node
                 current_node = current_node.right
-            else:  # Match is found. Different cases to be checked
-                # Node has left child only
-                if current_node.right == None:
-                    if parent_node == None:
-                        self.root = current_node.left
-                        return
-                    else:
-                        if parent_node.data > current_node.data:
-                            parent_node.left = current_node.left
-                            return
-                        else:
-                            parent_node.right = current_node.left
-                            return
-
-                # Node has right child only
-                elif current_node.left == None:
-                    if parent_node == None:
-                        self.root = current_node.right
-                        return
-                    else:
-                        if parent_node.data > current_node.data:
-                            parent_node.left = current_node.right
-                            return
-                        else:
-                            parent_node.right = current_node.right
-                            return
-
-                # Node has neither left nor right child
-                elif current_node.left == None and current_node.right == None:
-                    if parent_node == None:  # Node to be deleted is root
-                        current_node = None
-                        return
-                    if parent_node.data > current_node.data:
+            else:  # Node found
+                # Case 1: Node has no children (leaf node)
+                if current_node.left is None and current_node.right is None:
+                    if parent_node is None:  # Node is root
+                        self.root = None
+                    elif parent_node.data > current_node.data:
                         parent_node.left = None
-                        return
                     else:
                         parent_node.right = None
-                        return
+                    return
+                
+                # Case 2: Node has only a left child
+                elif current_node.right is None:
+                    if parent_node is None:  # Removing root
+                        self.root = current_node.left
+                    elif parent_node.data > current_node.data:
+                        parent_node.left = current_node.left
+                    else:
+                        parent_node.right = current_node.left
+                    return
+                
+                # Case 3: Node has only a right child
+                elif current_node.left is None:
+                    if parent_node is None:  # Removing root
+                        self.root = current_node.right
+                    elif parent_node.data > current_node.data:
+                        parent_node.left = current_node.right
+                    else:
+                        parent_node.right = current_node.right
+                    return               
+                
+                # Case 4: Node has two children
+                else:
+                    # Find the in-order successor (leftmost node in the right subtree)
+                    successor_parent = current_node
+                    successor = current_node.right
+                    while successor.left:  # Traverse left to find the smallest value
+                        successor_parent = successor
+                        successor = successor.left
+                    
+                    # Replace the data of the node to be deleted with the successor's data
+                    current_node.data = successor.data
 
-                # Node has both left and right child
-                elif current_node.left != None and current_node.right != None:
-                    del_node = current_node.right
-                    del_node_parent = current_node.right
-                    while del_node.left != None:  # Loop to reach the leftmost node of the right subtree of the current node
-                        del_node_parent = del_node
-                        del_node = del_node.left
-                    current_node.data = del_node.data  # The value to be replaced is copied
-                    if del_node == del_node_parent:  # If the node to be deleted is the exact right child of the current node
-                        current_node.right = del_node.right
-                        return
-                    if del_node.right == None:  # If the leftmost node of the right subtree of the current node has no right subtree
-                        del_node_parent.left = None
-                        return
-                    else:  # If it has a right subtree, we simply link it to the parent of the del_node
-                        del_node_parent.left = del_node.right
-                        return
+                    # Remove the successor node from its original position
+                    if successor_parent == current_node:  # Successor is the direct right child
+                        successor_parent.right = successor.right
+                    else:  # Successor has no left child but may have a right child
+                        successor_parent.left = successor.right
+                    return
         return "Not Found"
 
 
